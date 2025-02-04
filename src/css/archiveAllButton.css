@@ -1,0 +1,15 @@
+.unarchive-button {
+    color: #545454 !important; /* Dark gray */
+    border: 1px solid #c5c5c5 !important; /* Dark gray */
+    font-size: 0.75rem !important; /* Smaller text */
+    font-weight: 700 !important; /* Bold */
+    text-transform: capitalize !important; /* Optional for emphasis */
+    padding: 12px !important; /* Better spacing */
+    border-radius: 6px !important; /* Optional rounded corners */
+    text-align: left !important;
+}
+
+/* Ensure hover effect works */
+.unarchive-button:hover {
+    color: #333333 !important; /* Darker on hover */
+}

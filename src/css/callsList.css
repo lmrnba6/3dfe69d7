@@ -1,0 +1,31 @@
+.main {
+    padding: 1px !important;
+    background: #f6f6f6;
+}
+
+.main-body {
+    margin: 1rem;
+    height: 450px;
+    overflow: auto;
+}
+
+.MuiCardContent-root {
+    padding: 5px !important;
+    border-radius: 1rem !important;
+}
+
+.small-scrollbar::-webkit-scrollbar {
+    width: 0;
+}
+
+.emptyListMessage {
+    width: 100%;
+    text-align: center;
+    margin-top: 2rem;
+    color: #545454;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+
+

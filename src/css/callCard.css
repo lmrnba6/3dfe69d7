@@ -1,0 +1,70 @@
+/* CallCard.css */
+
+/* Card container */
+.call-card {
+    margin-bottom: 16px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+    padding: 0;
+}
+
+/* Call details container */
+.call-details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Left section (icon, call details) */
+.call-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Call direction icon */
+.call-icon {
+    font-size: 24px;
+}
+
+/* Call information box */
+.call-info {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+}
+
+/* Caller name (bold) */
+.call-from {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    max-width: 180px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Bottom text (call status) with fixed time */
+.call-status-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 8px;
+}
+
+/* Call status text with ellipsis */
+.call-status {
+    flex-grow: 1; /* Allows shrinking */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Call time (fixed) */
+.call-time {
+    flex-shrink: 0; /* Prevents shrinking */
+    color: #818080;
+    font-size: 12px;
+}

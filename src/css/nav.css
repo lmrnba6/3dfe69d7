@@ -1,0 +1,97 @@
+.tabs-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(180, 180, 180, 0.84); /* Light gray bottom border */
+    padding: 0 10px;
+    /*margin-bottom: 10px;*/
+    background: #fff; /* White background */
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Title Section */
+.tabs-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #000; /* Black title */
+    padding-bottom: 5px;
+}
+
+/* Call Icon */
+.call-icon {
+    color: #4caf50; /* Green */
+    font-size: 1.2rem;
+}
+
+/* Tabs Section */
+.tabs {
+    display: flex;
+    align-items: center;
+    gap: 0; /* No gaps to align separators */
+    padding-bottom: 5px;
+}
+
+/* Tab Buttons */
+.tab {
+    background: none;
+    border: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #818181; /* Gray color for inactive tabs */
+    padding: 15px 16px;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.3s;
+}
+
+/* Separator between Tabs */
+.tab + .tab::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 25%;
+    height: 50%; /* Height of the separator */
+    width: 1px; /* Width of the separator */
+    background-color: #ccc; /* Light gray color for the separator */
+    transform: translateX(-50%);
+}
+
+/* Active Tab */
+.tab.active {
+    color: black;
+    position: relative;
+}
+
+/* Active Border (70% Width) */
+.tab.active::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 25%; /* Center the border */
+    width: 50%; /* Only 70% of the tab width */
+    height: 5px; /* Thickness of the border */
+    background-color: #ff3815; /* Red color for the border */
+}
+
+/* Hover Effect */
+.tab:hover {
+    color: black;
+}
+
+/* Settings Icon Section */
+.settings-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #818181; /* Gray for the settings icon */
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+.settings-icon:hover {
+    color: black;
+}

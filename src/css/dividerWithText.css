@@ -1,0 +1,19 @@
+.divider-container {
+    display: flex;
+    align-items: center;
+    margin: 16px 0; /* Equivalent to my={2} */
+}
+
+.divider-line {
+    flex-grow: 1;
+    opacity: 0.5;
+}
+
+.divider-text {
+    margin: 0 12px; /* Slightly reduced spacing */
+    white-space: nowrap; /* Prevents text from breaking */
+    color: #a8a8a8; /* Darker gray for better contrast */
+    font-size: 0.65rem; /* Even smaller text */
+    font-weight: 700; /* Extra bold */
+    text-transform: uppercase; /* Optional: Makes text uppercase */
+}
