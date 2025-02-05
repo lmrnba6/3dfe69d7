@@ -7,8 +7,8 @@ import {
 } from "../services/callService";
 import { AppContext } from "../context/AppContext";
 
-const useCallActions = (refresh) => {
-  const { loading, setLoading } = useContext(AppContext);
+const useCallActions = () => {
+  const { setLoading } = useContext(AppContext);
 
   const getCalls = async () => {
     setLoading(true);
@@ -25,7 +25,6 @@ const useCallActions = (refresh) => {
     setLoading(true);
     try {
       await updateCallArchiveStatus(callId, isArchived);
-      refresh();
     } catch (error) {
       console.error("Error toggling archive status:", error);
     } finally {
@@ -37,7 +36,6 @@ const useCallActions = (refresh) => {
     setLoading(true);
     try {
       await archiveAllCalls(calls);
-      refresh();
     } catch (error) {
       console.error("Error archiving all calls:", error);
     } finally {
@@ -49,7 +47,6 @@ const useCallActions = (refresh) => {
     setLoading(true);
     try {
       await unarchiveAllCalls(calls);
-      refresh();
     } catch (error) {
       console.error("Error unarchiving all calls:", error);
     } finally {
@@ -57,7 +54,7 @@ const useCallActions = (refresh) => {
     }
   };
 
-  return { loading, getCalls, toggleArchive, archiveAll, unarchiveAll };
+  return { getCalls, toggleArchive, archiveAll, unarchiveAll };
 };
 
 export default useCallActions;

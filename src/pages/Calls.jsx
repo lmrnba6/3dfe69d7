@@ -17,11 +17,27 @@ const Calls = () => {
   const [archivedCalls, setArchivedCalls] = useState([]);
   const [selectedTab, setSelectedTab] = useState(TAB_INBOX);
   const { setMissedCalls, setLoading } = useContext(AppContext);
-  const { getCalls } = useCallActions();
+  const { getCalls, toggleArchive, archiveAll, unarchiveAll } =
+    useCallActions();
 
   useEffect(() => {
     fetchCalls();
   }, []);
+
+  const handleToggleArchive = async (callId, isArchived) => {
+    await toggleArchive(callId, isArchived);
+    await fetchCalls();
+  };
+
+  const handleUnarchiveAll = async (calls) => {
+    await unarchiveAll(calls);
+    await fetchCalls();
+  };
+
+  const handleArchiveAll = async (calls) => {
+    await archiveAll(calls);
+    await fetchCalls();
+  };
 
   const fetchCalls = async () => {
     setLoading(true);
@@ -62,6 +78,9 @@ const Calls = () => {
         calls={calls}
         unarchivedCalls={unarchivedCalls}
         archivedCalls={archivedCalls}
+        toggleArchive={handleToggleArchive}
+        archiveAll={handleArchiveAll}
+        unarchiveAll={handleUnarchiveAll}
       />
     </>
   );

@@ -4,7 +4,6 @@ import CallCard from "../components/CallCard";
 import ArchiveAllButton from "../components/ArchiveAllButton";
 import "../css/callsList.css";
 import DividerWithText from "../components/DividerWithText";
-import useCallActions from "../hooks/useCallActions";
 import {
   ARCHIVE_ALL_TEXT,
   EMPTY_ARCHIVED_CALLS_MESSAGE,
@@ -19,10 +18,10 @@ const CallsList = ({
   unarchivedCalls,
   archivedCalls,
   calls,
-  refresh,
+  toggleArchive,
+  archiveAll,
+  unarchiveAll,
 }) => {
-  const { toggleArchive, archiveAll, unarchiveAll } = useCallActions(refresh);
-
   return (
     <Box sx={{ p: 4 }} className="main">
       <div className="main-body small-scrollbar">
