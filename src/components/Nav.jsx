@@ -2,6 +2,7 @@ import React from "react";
 import CallIcon from "@mui/icons-material/Call";
 import TuneIcon from "@mui/icons-material/Tune";
 import "../css/nav.css";
+import { TAB_ACTIVE, TAB_ARCHIVED, TAB_INBOX } from "../constants/app.contants";
 
 const Nav = ({ selectedTab, setSelectedTab }) => {
   return (
@@ -13,14 +14,14 @@ const Nav = ({ selectedTab, setSelectedTab }) => {
 
       <div className="tabs">
         <button
-          className={`tab ${selectedTab === "inbox" ? "active" : ""}`}
-          onClick={() => setSelectedTab("inbox")}
+          className={`tab ${selectedTab === TAB_INBOX ? TAB_ACTIVE : ""}`}
+          onClick={() => setSelectedTab(TAB_INBOX)}
         >
           Inbox
         </button>
         <button
-          className={`tab ${selectedTab === "archived" ? "active" : ""}`}
-          onClick={() => setSelectedTab("archived")}
+          className={`tab ${selectedTab === TAB_ARCHIVED ? TAB_ACTIVE : ""}`}
+          onClick={() => setSelectedTab(TAB_ARCHIVED)}
         >
           All Calls
         </button>

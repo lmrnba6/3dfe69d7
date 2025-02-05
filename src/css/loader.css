@@ -1,0 +1,4 @@
+.loader-backdrop {
+    color: #fff;
+    z-index: 1301; /* Equivalent to theme.zIndex.drawer + 1 */
+}

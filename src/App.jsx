@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import "./css/app.css";
 import { AppContext } from "./context/AppContext";
 import Dial from "./pages/Dial";
+import { NAV_DIAL, NAV_HOME } from "./constants/app.contants";
 
 function App() {
   const { loading } = useContext(AppContext);
@@ -16,8 +17,8 @@ function App() {
         <Loader loading={loading} />
         <Header />
         <Routes>
-          <Route path="/" element={<Calls />} />
-          <Route path="/dial" element={<Dial />} />
+          <Route path={NAV_HOME} element={<Calls />} />
+          <Route path={NAV_DIAL} element={<Dial />} />
         </Routes>
         <Footer />
       </div>

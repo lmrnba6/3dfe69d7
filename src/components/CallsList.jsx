@@ -5,6 +5,14 @@ import ArchiveAllButton from "../components/ArchiveAllButton";
 import "../css/callsList.css";
 import DividerWithText from "../components/DividerWithText";
 import useCallActions from "../hooks/useCallActions";
+import {
+  ARCHIVE_ALL_TEXT,
+  EMPTY_ARCHIVED_CALLS_MESSAGE,
+  EMPTY_CALLS_MESSAGE,
+  TAB_ARCHIVED,
+  TAB_INBOX,
+  UNARCHIVE_ALL_TEXT,
+} from "../constants/app.contants";
 
 const CallsList = ({
   selectedTab,
@@ -18,15 +26,15 @@ const CallsList = ({
   return (
     <Box sx={{ p: 4 }} className="main">
       <div className="main-body small-scrollbar">
-        {selectedTab === "inbox" && (
+        {selectedTab === TAB_INBOX && (
           <>
             {Object.keys(unarchivedCalls)?.length ? (
               <ArchiveAllButton
                 onClick={() => archiveAll(calls)}
-                text="Archive All Calls"
+                text={ARCHIVE_ALL_TEXT}
               />
             ) : (
-              <div className="emptyListMessage">There are no calls</div>
+              <div className="emptyListMessage">{EMPTY_CALLS_MESSAGE}</div>
             )}
             {Object.keys(unarchivedCalls).map((date) => (
               <Box key={date} sx={{ mt: 3 }}>
@@ -44,16 +52,16 @@ const CallsList = ({
           </>
         )}
 
-        {selectedTab === "archived" && (
+        {selectedTab === TAB_ARCHIVED && (
           <>
             {Object.keys(archivedCalls)?.length ? (
               <ArchiveAllButton
                 onClick={() => unarchiveAll(calls)}
-                text="Unarchive All Calls"
+                text={UNARCHIVE_ALL_TEXT}
               />
             ) : (
               <div className="emptyListMessage">
-                There are no archived calls
+                {EMPTY_ARCHIVED_CALLS_MESSAGE}
               </div>
             )}
             {Object.keys(archivedCalls).map((date) => (

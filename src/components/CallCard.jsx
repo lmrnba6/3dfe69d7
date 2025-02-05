@@ -13,43 +13,44 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CallReceivedIcon from "@mui/icons-material/CallReceived";
 import CallMadeIcon from "@mui/icons-material/CallMade";
 import CallMissedIcon from "@mui/icons-material/CallMissed";
+import {
+  CALL_COLORS,
+  CALL_DIRECTION_INBOUND,
+  CALL_TYPE_MISSED,
+  TIME_FORMAT_OPTIONS,
+  CALL_LABELS,
+} from "../constants/app.contants";
 
 const CallCard = ({ call, toggleArchive, count }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
+  const handleClick = (event) => setAnchorEl(event.currentTarget);
+  const handleClose = () => setAnchorEl(null);
   const handleArchiveToggle = () => {
     toggleArchive(call.id, !call.is_archived);
     handleClose();
   };
 
-  const isMissed = call.call_type === "missed";
-  const isInbound = call.direction === "inbound";
+  const isMissed = call.call_type === CALL_TYPE_MISSED;
+  const isInbound = call.direction === CALL_DIRECTION_INBOUND;
 
   const callText = isMissed
     ? isInbound
-      ? `Missed call from ${call.from}`
-      : `Missed call to ${call.to}`
+      ? `${CALL_LABELS.missedInbound} ${call.from}`
+      : `${CALL_LABELS.missedOutbound} ${call.to}`
     : isInbound
-    ? `Received call from ${call.from}`
-    : `Answered call to ${call.to}`;
+    ? `${CALL_LABELS.received} ${call.from}`
+    : `${CALL_LABELS.answered} ${call.to}`;
 
   const viaText = call.via && call.via !== call.to ? ` via ${call.via}` : "";
 
   const callIcon = isMissed ? (
-    <CallMissedIcon sx={{ color: "#FF5722" }} />
+    <CallMissedIcon sx={{ color: CALL_COLORS.missed }} />
   ) : isInbound ? (
-    <CallReceivedIcon sx={{ color: "#4CAF50" }} />
+    <CallReceivedIcon sx={{ color: CALL_COLORS.inbound }} />
   ) : (
-    <CallMadeIcon sx={{ color: "#2196F3" }} />
+    <CallMadeIcon sx={{ color: CALL_COLORS.outbound }} />
   );
 
   return (
@@ -107,7 +108,7 @@ const CallCard = ({ call, toggleArchive, count }) => {
                   minWidth: 0,
                   flexGrow: 1,
                   maxWidth: "100%",
-                  fontSize: "0.7rem", // Adjusted font size
+                  fontSize: "0.7rem",
                 }}
               >
                 {callText}
@@ -120,13 +121,12 @@ const CallCard = ({ call, toggleArchive, count }) => {
             <Typography
               variant="caption"
               color="text.secondary"
-              sx={{ whiteSpace: "nowrap" }} // Prevent time from wrapping
+              sx={{ whiteSpace: "nowrap" }}
             >
-              {new Date(call.created_at).toLocaleTimeString([], {
-                hour: "2-digit",
-                minute: "2-digit",
-                hour12: true,
-              })}
+              {new Date(call.created_at).toLocaleTimeString(
+                [],
+                TIME_FORMAT_OPTIONS
+              )}
             </Typography>
 
             <IconButton onClick={handleClick}>

@@ -15,6 +15,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import "../css/footer.css";
 import { AppContext } from "../context/AppContext";
+import { NAV_DIAL, NAV_HOME } from "../constants/app.contants";
 
 const Footer = () => {
   const [value, setValue] = useState(0);
@@ -25,13 +26,13 @@ const Footer = () => {
     setValue(newValue);
     switch (newValue) {
       case 0:
-        navigate("/");
+        navigate(NAV_HOME);
         break;
       case 2:
-        navigate("/dial");
+        navigate(NAV_DIAL);
         break;
       default:
-        navigate("/dial");
+        navigate(NAV_DIAL);
         break;
     }
   };
