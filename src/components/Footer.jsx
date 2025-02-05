@@ -15,7 +15,13 @@ import {
 import { useNavigate } from "react-router-dom";
 import "../css/footer.css";
 import { AppContext } from "../context/AppContext";
-import { NAV_DIAL, NAV_HOME } from "../constants/app.contants";
+import {
+  NAV_DIAL,
+  NAV_HOME,
+  NAV_PROFILE,
+  NAV_SETTINGS,
+  NAV_STATUS,
+} from "../constants/app.contants";
 
 const Footer = () => {
   const [value, setValue] = useState(0);
@@ -28,11 +34,20 @@ const Footer = () => {
       case 0:
         navigate(NAV_HOME);
         break;
+      case 1:
+        navigate(NAV_PROFILE);
+        break;
       case 2:
         navigate(NAV_DIAL);
         break;
+      case 3:
+        navigate(NAV_SETTINGS);
+        break;
+      case 4:
+        navigate(NAV_STATUS);
+        break;
       default:
-        navigate(NAV_DIAL);
+        navigate(NAV_HOME);
         break;
     }
   };

@@ -26,6 +26,19 @@ module.exports = {
           loader: "babel-loader",
         },
       },
+      // Add image loader rule here
+      {
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[path][name].[ext]",
+              outputPath: "assets/images", // Optional: change output directory
+            },
+          },
+        ],
+      },
     ],
   },
   plugins: [

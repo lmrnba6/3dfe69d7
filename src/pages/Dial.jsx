@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Box, Button, Grid, TextField, IconButton } from "@mui/material";
-import BackspaceIcon from "@mui/icons-material/Backspace"; // Import the backspace icon
+import BackspaceIcon from "@mui/icons-material/Backspace";
+import CallIcon from "@mui/icons-material/Call";
 
 const Dial = () => {
   const [input, setInput] = useState("");
@@ -17,14 +18,18 @@ const Dial = () => {
   };
 
   const handleBackspace = () => {
-    setInput((prevInput) => prevInput.slice(0, -1)); // Remove the last character
+    setInput((prevInput) => prevInput.slice(0, -1));
+  };
+
+  const handleCall = () => {
+    console.log("Calling: " + input);
   };
 
   return (
     <Box
       sx={{
         height: 500,
-        backgroundColor: "white",
+        backgroundColor: "#f4f4f7",
         borderRadius: 2,
         boxShadow: 3,
         display: "flex",
@@ -34,7 +39,6 @@ const Dial = () => {
       }}
     >
       <Box sx={{ display: "flex", alignItems: "center", marginBottom: 2 }}>
-        {/* Display field */}
         <TextField
           value={input}
           onChange={(e) => setInput(e.target.value)}
@@ -44,9 +48,10 @@ const Dial = () => {
             fontSize: "1.5rem",
             textAlign: "center",
             flex: 1,
+            backgroundColor: "#fff",
+            borderRadius: 1,
           }}
         />
-
         <IconButton
           onClick={handleBackspace}
           sx={{
@@ -64,7 +69,7 @@ const Dial = () => {
       {buttons.map((row, rowIndex) => (
         <Grid
           container
-          spacing={3} // Increased spacing between buttons
+          spacing={3}
           justifyContent="center"
           key={rowIndex}
           sx={{ flex: 1 }}
@@ -78,8 +83,8 @@ const Dial = () => {
                   height: 70,
                   borderRadius: "50%",
                   fontSize: "1.5rem",
-                  backgroundColor: "#05a200",
-                  "&:hover": { backgroundColor: "rgba(0,128,0,0.8)" },
+                  backgroundColor: "#007aff",
+                  "&:hover": { backgroundColor: "#0051a2" },
                 }}
                 onClick={() => handleButtonClick(button)}
               >
@@ -89,6 +94,27 @@ const Dial = () => {
           ))}
         </Grid>
       ))}
+
+      <Box sx={{ display: "flex", justifyContent: "center", marginTop: 2 }}>
+        <Button
+          variant="contained"
+          sx={{
+            width: 70,
+            height: 70,
+            borderRadius: "50%",
+            fontSize: "2rem",
+            backgroundColor: "rgba(0,178,0,0.8)",
+            "&:hover": { backgroundColor: "rgba(0,128,0,0.8)" },
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            marginBottom: "20px",
+          }}
+          onClick={handleCall}
+        >
+          <CallIcon sx={{ fontSize: "2rem", color: "#fff" }} />
+        </Button>
+      </Box>
     </Box>
   );
 };

@@ -8,6 +8,7 @@ import "./css/app.css";
 import { AppContext } from "./context/AppContext";
 import Dial from "./pages/Dial";
 import { NAV_DIAL, NAV_HOME } from "./constants/app.contants";
+import PageNotFound from "./pages/PageNotFound";
 
 function App() {
   const { loading } = useContext(AppContext);
@@ -19,6 +20,7 @@ function App() {
         <Routes>
           <Route path={NAV_HOME} element={<Calls />} />
           <Route path={NAV_DIAL} element={<Dial />} />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
         <Footer />
       </div>

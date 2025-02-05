@@ -28,4 +28,10 @@ export const ARCHIVE_ALL_TEXT = "Archive All Calls";
 export const UNARCHIVE_ALL_TEXT = "Unarchive All Calls";
 export const NAV_HOME = "/";
 export const NAV_DIAL = "/dial";
+export const NAV_PROFILE = "/profile";
+export const NAV_SETTINGS = "/settings";
+export const NAV_STATUS = "/status";
+
+export const NAV_PAGE_NOT_FOUND = "/page-not-found";
+
 export const INBOUND_CALL = "inbound";
