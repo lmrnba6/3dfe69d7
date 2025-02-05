@@ -3,8 +3,6 @@
     left: 0;
     right: 0;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
-    /*position: absolute;*/
-    /*z-index: 99999;*/
 }
 
 .bottom-navigation .Mui-selected {
@@ -35,7 +33,7 @@
     border-radius: 50%;
     padding: 10px;
     position: relative;
-    top: -15px; /* Moves the icon up to overflow on the top */
+    top: -15px;
     width: 2rem !important;
     height: 2rem !important;
 }

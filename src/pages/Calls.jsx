@@ -1,20 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
-import Header from "../components/Header.jsx";
-import CallsList from "../components/CallsList.jsx";
-import Nav from "../components/Nav.jsx";
-import Footer from "../components/Footer.jsx";
+import CallsList from "../components/CallsList";
+import Nav from "../components/Nav";
 import axios from "axios";
-import Loader from "../components/Loader.jsx";
 import { BASE_URL } from "../constants/app.contants.js";
+import { AppContext } from "../context/AppContext";
 
 const Calls = () => {
   const [unarchivedCalls, setUnarchivedCalls] = useState([]);
   const [calls, setCalls] = useState([]);
   const [archivedCalls, setArchivedCalls] = useState([]);
   const [selectedTab, setSelectedTab] = useState("inbox");
-  const [missedCalls, setMissedCalls] = useState(0);
-  const [loading, setLoading] = useState(false);
+  const { setMissedCalls, setLoading } = useContext(AppContext);
 
   useEffect(() => {
     fetchCalls();
@@ -52,7 +49,7 @@ const Calls = () => {
 
   const groupCallsByDateAndCaller = (callsList) => {
     return callsList
-      .sort((a, b) => new Date(b.created_at) - new Date(a.created_at)) // Sort by date descending
+      .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
       .reduce((acc, call) => {
         const formattedDate = new Intl.DateTimeFormat("en-US", {
           year: "numeric",
@@ -78,9 +75,7 @@ const Calls = () => {
   };
 
   return (
-    <div className="container">
-      <Loader loading={loading} />
-      <Header />
+    <>
       <Nav selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
       <CallsList
         selectedTab={selectedTab}
@@ -90,8 +85,7 @@ const Calls = () => {
         unarchivedCalls={unarchivedCalls}
         archivedCalls={archivedCalls}
       />
-      <Footer missedCalls={missedCalls} />
-    </div>
+    </>
   );
 };
 

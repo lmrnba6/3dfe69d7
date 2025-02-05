@@ -31,7 +31,6 @@ const CallCard = ({ call, toggleArchive, count }) => {
     handleClose();
   };
 
-  // Determine Call Status & Icon
   const isMissed = call.call_type === "missed";
   const isInbound = call.direction === "inbound";
 
@@ -43,7 +42,6 @@ const CallCard = ({ call, toggleArchive, count }) => {
     ? `Received call from ${call.from}`
     : `Answered call to ${call.to}`;
 
-  // Include 'via' in text if it's different from 'to'
   const viaText = call.via && call.via !== call.to ? ` via ${call.via}` : "";
 
   const callIcon = isMissed ? (
@@ -65,7 +63,6 @@ const CallCard = ({ call, toggleArchive, count }) => {
             gap: 2,
           }}
         >
-          {/* Left Section: Icon, From, To */}
           <Box
             sx={{
               display: "flex",
@@ -75,21 +72,16 @@ const CallCard = ({ call, toggleArchive, count }) => {
               gap: 2,
             }}
           >
-            {/* Call Icon */}
             <Box>{callIcon}</Box>
 
-            {/* From and To */}
             <Box sx={{ flexGrow: 1, minWidth: 0 }}>
               <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                {/* Smaller "From" Text */}
                 <Typography
                   variant="body2"
                   sx={{ fontWeight: "bold", fontSize: "0.85rem" }}
                 >
                   {call.from}
                 </Typography>
-
-                {/* Smaller Badge */}
                 <Badge
                   sx={{
                     ml: 1,
@@ -104,8 +96,6 @@ const CallCard = ({ call, toggleArchive, count }) => {
                   color="error"
                 />
               </Box>
-
-              {/* Truncated Text with Ellipsis */}
               <Typography
                 variant="caption"
                 color="text.secondary"
@@ -126,9 +116,7 @@ const CallCard = ({ call, toggleArchive, count }) => {
             </Box>
           </Box>
 
-          {/* Right Section: Time and Menu */}
           <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-            {/* Time - Prevent Wrapping */}
             <Typography
               variant="caption"
               color="text.secondary"
@@ -141,7 +129,6 @@ const CallCard = ({ call, toggleArchive, count }) => {
               })}
             </Typography>
 
-            {/* Three Dots Menu */}
             <IconButton onClick={handleClick}>
               <MoreVertIcon />
             </IconButton>

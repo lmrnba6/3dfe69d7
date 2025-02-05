@@ -1,66 +1,19 @@
 import React from "react";
-import axios from "axios";
 import { Box } from "@mui/material";
-import CallCard from "../components/CallCard.jsx";
-import ArchiveAllButton from "../components/ArchiveAllButton.jsx";
+import CallCard from "../components/CallCard";
+import ArchiveAllButton from "../components/ArchiveAllButton";
 import "../css/callsList.css";
-import DividerWithText from "../components/DividerWithText.jsx";
-import { BASE_URL } from "../constants/app.contants.js";
+import DividerWithText from "../components/DividerWithText";
+import useCallActions from "../hooks/useCallActions";
 
 const CallsList = ({
   selectedTab,
   unarchivedCalls,
-  setLoading,
-  refresh,
   archivedCalls,
   calls,
+  refresh,
 }) => {
-  const toggleArchive = async (callId, isArchived) => {
-    setLoading(true);
-    try {
-      await axios.patch(`${BASE_URL}/activities/${callId}`, {
-        is_archived: isArchived,
-      });
-      refresh();
-    } catch (error) {
-      console.error("Error updating call archive status:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const archiveAll = async () => {
-    debugger;
-    setLoading(true);
-    try {
-      for (const call of calls) {
-        await axios.patch(`${BASE_URL}/activities/${call.id}`, {
-          is_archived: true,
-        });
-      }
-      refresh();
-    } catch (error) {
-      console.error("Error archiving all calls:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const unarchiveAll = async () => {
-    setLoading(true);
-    try {
-      for (const call of calls) {
-        await axios.patch(`${BASE_URL}/activities/${call.id}`, {
-          is_archived: false,
-        });
-      }
-      refresh();
-    } catch (error) {
-      console.error("Error unarchiving all calls:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const { toggleArchive, archiveAll, unarchiveAll } = useCallActions(refresh);
 
   return (
     <Box sx={{ p: 4 }} className="main">
@@ -68,7 +21,10 @@ const CallsList = ({
         {selectedTab === "inbox" && (
           <>
             {Object.keys(unarchivedCalls)?.length ? (
-              <ArchiveAllButton onClick={archiveAll} text="Archive All Calls" />
+              <ArchiveAllButton
+                onClick={() => archiveAll(calls)}
+                text="Archive All Calls"
+              />
             ) : (
               <div className="emptyListMessage">There are no calls</div>
             )}
@@ -77,6 +33,7 @@ const CallsList = ({
                 <DividerWithText text={date} />
                 {Object.keys(unarchivedCalls[date]).map((caller) => (
                   <CallCard
+                    key={caller}
                     count={unarchivedCalls[date][caller].count}
                     call={unarchivedCalls[date][caller].calls[0]}
                     toggleArchive={toggleArchive}
@@ -91,7 +48,7 @@ const CallsList = ({
           <>
             {Object.keys(archivedCalls)?.length ? (
               <ArchiveAllButton
-                onClick={unarchiveAll}
+                onClick={() => unarchiveAll(calls)}
                 text="Unarchive All Calls"
               />
             ) : (
@@ -104,6 +61,7 @@ const CallsList = ({
                 <DividerWithText text={date} />
                 {Object.keys(archivedCalls[date]).map((caller) => (
                   <CallCard
+                    key={caller}
                     count={archivedCalls[date][caller].count}
                     call={archivedCalls[date][caller].calls[0]}
                     toggleArchive={toggleArchive}
