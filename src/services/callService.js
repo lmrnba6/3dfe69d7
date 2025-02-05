@@ -2,6 +2,22 @@ import axios from "axios";
 import { BASE_URL } from "../constants/app.contants.js";
 
 /**
+ * Fetches all calls from the API.
+ *
+ * @throws Error If the API request fails.
+ * @returns {Promise<Array>} The list of calls.
+ */
+export const fetchCalls = async () => {
+  try {
+    const response = await axios.get(`${BASE_URL}/activities`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching calls:", error);
+    throw error;
+  }
+};
+
+/**
  * Updates the archive status of a specific call.
  *
  * @param callId - The ID of the call to update.

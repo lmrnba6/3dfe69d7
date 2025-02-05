@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import {
   archiveAllCalls,
+  fetchCalls,
   unarchiveAllCalls,
   updateCallArchiveStatus,
 } from "../services/callService";
@@ -8,6 +9,18 @@ import { AppContext } from "../context/AppContext";
 
 const useCallActions = (refresh) => {
   const { loading, setLoading } = useContext(AppContext);
+
+  const getCalls = async () => {
+    setLoading(true);
+    try {
+      return await fetchCalls();
+    } catch (error) {
+      console.error("Error fetching calls:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const toggleArchive = async (callId, isArchived) => {
     setLoading(true);
     try {
@@ -44,7 +57,7 @@ const useCallActions = (refresh) => {
     }
   };
 
-  return { loading, toggleArchive, archiveAll, unarchiveAll };
+  return { loading, getCalls, toggleArchive, archiveAll, unarchiveAll };
 };
 
 export default useCallActions;

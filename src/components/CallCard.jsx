@@ -83,19 +83,21 @@ const CallCard = ({ call, toggleArchive, count }) => {
                 >
                   {call.from}
                 </Typography>
-                <Badge
-                  sx={{
-                    ml: 1,
-                    "& .MuiBadge-badge": {
-                      fontSize: "0.6rem", // Smaller font size
-                      minWidth: "14px", // Reduce width
-                      height: "14px", // Reduce height
-                      padding: "2px", // Reduce padding
-                    },
-                  }}
-                  badgeContent={count}
-                  color="error"
-                />
+                {count > 1 && (
+                  <Badge
+                    sx={{
+                      ml: 1,
+                      "& .MuiBadge-badge": {
+                        fontSize: "0.6rem", // Smaller font size
+                        minWidth: "14px", // Reduce width
+                        height: "14px", // Reduce height
+                        padding: "2px", // Reduce padding
+                      },
+                    }}
+                    badgeContent={count}
+                    color="error"
+                  />
+                )}
               </Box>
               <Typography
                 variant="caption"
